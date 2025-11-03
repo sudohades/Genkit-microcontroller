@@ -1,98 +1,132 @@
-# Proyek Monitoring Sensor DHT11 dengan ESP8266/ESP32 dan Google Firestore
+Monitoring DHT11 Sensor Project with ESP8266/ESP32 and Google Firestore
 
-Ingin belajar menghubungkan perangkat fisik ke cloud? Proyek ini adalah titik awal yang sempurna! Anda akan belajar cara membaca data dari sensor DHT11 dan mengirimkannya ke Google Firestore untuk monitoring real-time dari mana saja. Kami menyediakan dua contoh kode yang jelas untuk platform ESP8266 dan ESP32, lengkap dengan penjelasan untuk membantu Anda membangun proyek IoT pertama Anda.
+Want to learn how to connect physical devices to the cloud? This project is a perfect starting point! You will learn how to read data from a DHT11 sensor and send it to Google Firestore for real-time monitoring from anywhere. We provide two clear code examples for the ESP8266 and ESP32 platforms, complete with explanations to help you build your first IoT project.
 
-Ini adalah proyek dasar yang sangat baik untuk memulai dengan Internet of Things (IoT), integrasi *cloud*, dan visualisasi data sensor.
+This is an excellent basic project to get started with the Internet of Things (IoT), cloud integration, and sensor data visualization.
 
-## Fitur Utama 🚀
-* **Logging Data Real-Time**: Mengirim data suhu dan kelembaban ke cloud setiap 10 detik.
-* **Dukungan Multi-Platform**: Menyediakan kode terpisah untuk NodeMCU ESP8266 dan ESP32.
-* **Database Cloud Scalable**: Menggunakan Google Firestore, sebuah database NoSQL yang andal untuk menyimpan data time-series.
-* **Autentikasi Pengguna**: Mengamankan penulisan data ke database menggunakan sistem autentikasi email/password dari Firebase.
-* **Dua Pendekatan Kode**: Menunjukkan dua metode penjadwalan yang berbeda:
-    * **Blocking** (`delay()`) untuk kesederhanaan pada ESP8266.
-    * **Non-Blocking** (`millis()`) untuk efisiensi pada ESP32.
+Main Features 🚀
 
----
-## Kebutuhan Perangkat
+Real-Time Data Logging: Sends temperature and humidity data to the cloud every 10 seconds.
 
-### Perangkat Keras 🔌
-* NodeMCU ESP8266 atau ESP32 Dev Kit
-* Sensor Suhu & Kelembaban DHT11
-* Kabel Jumper
-* Kabel Micro USB
-* Akses ke jaringan Wi-Fi
+Multi-Platform Support: Provides separate codes for NodeMCU ESP8266 and ESP32.
 
-### Perangkat Lunak & Library 💻
-1.  **Arduino IDE**
-2.  **Board Manager**:
-    * `esp8266` by ESP8266 Community.
-    * `esp32` by Espressif Systems.
-3.  **Arduino Libraries**:
-    * `Firebase ESP Client` oleh Mobizt (untuk komunikasi dengan Firebase).
-    * `DHT sensor library` oleh Adafruit (untuk membaca sensor DHT11).
+Scalable Cloud Database: Uses Google Firestore, a reliable NoSQL database for storing time-series data.
 
----
-## Konfigurasi
+User Authentication: Secures data writing to the database using Firebase’s email/password authentication system.
 
-### 1. Pengaturan Proyek Firebase
-Sebelum mengunggah kode, Anda perlu menyiapkan proyek di Firebase.
+Two Coding Approaches: Showcases two different scheduling methods:
 
-1.  **Buat Proyek**: Buka [Firebase Console](https://console.firebase.google.com/), klik **Tambahkan Proyek**, dan beri nama proyek Anda (misalnya, "DHT11 Firestore").
-2.  **Aktifkan Autentikasi**:
-    * Di menu sebelah kiri, buka `Build` > `Authentication`.
-    * Klik **Mulai**, pilih `Email/Password` sebagai metode masuk, dan aktifkan.
-    * Masuk ke tab **Users** dan klik **Add user** untuk membuat akun pengguna baru yang akan digunakan oleh ESP Anda.
-3.  **Buat Firestore Database**:
-    * Buka `Build` > `Firestore Database`.
-    * Klik **Buat database** dan mulai dalam **mode pengujian (test mode)**.
-4.  **Dapatkan Kredensial**:
-    * Klik ikon gerigi di sebelah *Project Overview* dan pilih **Project settings**.
-    * Di bawah tab *General*, salin **Web API Key** dan **Project ID**. Anda akan membutuhkannya di kode Arduino.
+Blocking (delay()) for simplicity on the ESP8266.
 
-### 2. Pengaturan Kode Arduino
-1.  Pilih file yang sesuai untuk board Anda:
-    * `FirebaseESP8266V2DHT.ino` untuk ESP8266.
-    * `FirebaseESP32V2DHT.ino` untuk ESP32.
-2.  Buka file di Arduino IDE.
-3.  Isi kredensial Anda pada baris-baris berikut:
-    ```cpp
-    // --- KREDENSIAL WIFI ---
-    #define WIFI_SSID "NAMA_WIFI_ANDA"
-    #define WIFI_PASSWORD "PASSWORD_WIFI_ANDA"
+Non-Blocking (millis()) for efficiency on the ESP32.
 
-    // --- KREDENSIAL FIREBASE ---
-    #define API_KEY "WEB_API_KEY_ANDA"
-    #define FIREBASE_PROJECT_ID "ID_PROYEK_ANDA"
+Hardware Requirements 🔌
 
-    // --- KREDENSIAL PENGGUNA ---
-    #define USER_EMAIL "EMAIL_ANDA_YANG_DIDAFTARKAN"
-    #define USER_PASSWORD "PASSWORD_ANDA"
-    ```
+NodeMCU ESP8266 or ESP32 Dev Kit
 
----
-## Diagram Rangkaian
+DHT11 Temperature & Humidity Sensor
 
-Hubungkan sensor DHT11 ke board ESP Anda sebagai berikut. Pin data terhubung ke **D4 (GPIO 4)**.
+Jumper Wires
 
-| Pin DHT11 | Pin ESP8266 / ESP32 |
-| :--- | :--- |
-| **VCC / +** | `3V3` |
-| **GND / -** | `GND` |
-| **DATA / OUT** | `D4` |
+Micro USB Cable
 
----
-## Cara Menggunakan
+Access to Wi-Fi network
 
-1.  Pastikan semua pengaturan Firebase dan kode Arduino sudah selesai.
-2.  Rangkai perangkat keras sesuai diagram di atas.
-3.  Hubungkan board ESP ke komputer Anda.
-4.  Di Arduino IDE, pilih Board dan Port yang benar.
-5.  Klik **Upload** untuk mengunggah kode.
-6.  Buka **Serial Monitor** dan atur baud rate ke **115200**. Anda akan melihat log koneksi Wi-Fi dan status pengiriman data.
-7.  Buka konsol Firebase, navigasi ke **Firestore Database**, dan Anda akan melihat data suhu dan kelembaban muncul dan diperbarui setiap 10 detik!
+Software & Libraries 💻
 
----
-## Lisensi
+Arduino IDE
 
-Proyek ini dilisensikan di bawah Lisensi MIT.
+Board Managers:
+
+esp8266 by the ESP8266 Community.
+
+esp32 by Espressif Systems.
+
+Arduino Libraries:
+
+Firebase ESP Client by Mobizt (for Firebase communication).
+
+DHT sensor library by Adafruit (for reading the DHT11 sensor).
+
+Configuration
+1. Firebase Project Setup
+
+Before uploading the code, you need to set up a project in Firebase.
+
+Create a Project:
+Open Firebase Console
+, click Add Project, and name your project (for example, “DHT11 Firestore”).
+
+Enable Authentication:
+
+In the left menu, go to Build > Authentication.
+
+Click Get Started, select Email/Password as the sign-in method, and enable it.
+
+Go to the Users tab and click Add user to create a new user account that your ESP will use.
+
+Create Firestore Database:
+
+Go to Build > Firestore Database.
+
+Click Create Database and start in test mode.
+
+Get Credentials:
+
+Click the gear icon next to Project Overview and choose Project settings.
+
+Under the General tab, copy the Web API Key and Project ID.
+
+You’ll need these in your Arduino code.
+
+2. Arduino Code Setup
+
+Select the appropriate file for your board:
+
+FirebaseESP8266V2DHT.ino for ESP8266.
+
+FirebaseESP32V2DHT.ino for ESP32.
+
+Open the file in Arduino IDE.
+
+Fill in your credentials on the following lines:
+
+// --- WIFI CREDENTIALS ---
+#define WIFI_SSID "YOUR_WIFI_NAME"
+#define WIFI_PASSWORD "YOUR_WIFI_PASSWORD"
+
+// --- FIREBASE CREDENTIALS ---
+#define API_KEY "YOUR_WEB_API_KEY"
+#define FIREBASE_PROJECT_ID "YOUR_PROJECT_ID"
+
+// --- USER CREDENTIALS ---
+#define USER_EMAIL "YOUR_REGISTERED_EMAIL"
+#define USER_PASSWORD "YOUR_PASSWORD"
+
+Wiring Diagram
+
+Connect the DHT11 sensor to your ESP board as follows. The data pin connects to D4 (GPIO 4).
+
+DHT11 Pin	ESP8266 / ESP32 Pin
+VCC / +	3V3
+GND / -	GND
+DATA / OUT	D4
+How to Use
+
+Ensure all Firebase and Arduino code setup steps are complete.
+
+Assemble the hardware according to the wiring diagram above.
+
+Connect the ESP board to your computer.
+
+In Arduino IDE, select the correct Board and Port.
+
+Click Upload to upload the code.
+
+Open Serial Monitor and set the baud rate to 115200. You’ll see Wi-Fi connection logs and data posting status.
+
+Open the Firebase Console, navigate to Firestore Database, and you’ll see temperature and humidity data appear and update every 10 seconds!
+
+License
+
+This project is licensed under the MIT License.
